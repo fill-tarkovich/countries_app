@@ -7,19 +7,20 @@ const CountriesList = () => {
   const [loading, setLoading] = useState(false);
 
   const getCountries = () =>
-    axios.get("https://restcountries.com/v3.1/all?fields=name,flag,ccn3");
+    axios
+      .get(
+        "https://restcountries.com/v3.1/all?fields=name,flag,ccn3,population,languages,currencies"
+      )
+      .then((res) => setCountries(res.data));
 
   useEffect(() => {
     setLoading(true);
-    Promise.all([getCountries()]).then(function (results) {
-      const countriesData = results[0];
-      setCountries(countriesData.data);
-      setLoading(false);
-    });
+    getCountries();
+    setLoading(false);
   }, []);
 
   if (loading) {
-    return <p>Loading recepies...</p>;
+    return <p>Loading...</p>;
   }
 
   return (
@@ -30,6 +31,12 @@ const CountriesList = () => {
             key={country.ccn3}
             flag={country.flag}
             name={country.name.common}
+            official={country.name.official}
+            population={country.population}
+            languages={Object.values(country.languages || {}).join(", ")}
+            currencies={Object.values(country.currencies)
+              .map((currency) => currency.name)
+              .join(", ")}
           />
         ))}
       </div>
