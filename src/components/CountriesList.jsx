@@ -25,7 +25,7 @@ const CountriesList = () => {
 
   return (
     <div>
-      <div>
+      <div className="cards_list">
         {countries.map((country) => (
           <CountryCard
             key={country.ccn3}

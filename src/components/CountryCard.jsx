@@ -9,7 +9,7 @@ const CountryCard = ({
   currencies,
 }) => {
   return (
-    <div>
+    <div className="card">
       <div className="flag">{flag}</div>
       <h3>{name}</h3>
       <p>{official}</p>
