@@ -1,23 +1,17 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import CountryCard from "./CountryCard";
 
-const CountriesList = () => {
-  const [countries, setCountries] = useState([]);
-  const [loading, setLoading] = useState(false);
+import { initializeCountries } from "../features/countriesSlice";
 
-  const getCountries = () =>
-    axios
-      .get(
-        "https://restcountries.com/v3.1/all?fields=name,flag,ccn3,population,languages,currencies"
-      )
-      .then((res) => setCountries(res.data));
+const CountriesList = () => {
+  const dispatch = useDispatch();
+  const countries = useSelector((state) => state.countries.countries);
+  const loading = useSelector((state) => state.countries.isLoading);
 
   useEffect(() => {
-    setLoading(true);
-    getCountries();
-    setLoading(false);
-  }, []);
+    dispatch(initializeCountries());
+  }, [dispatch]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -28,13 +22,13 @@ const CountriesList = () => {
       <div className="cards_list">
         {countries.map((country) => (
           <CountryCard
-            key={country.ccn3}
+            key={country.name.official}
             flag={country.flag}
             name={country.name.common}
             official={country.name.official}
             population={country.population}
             languages={Object.values(country.languages || {}).join(", ")}
-            currencies={Object.values(country.currencies)
+            currencies={Object.values(country.currencies || {})
               .map((currency) => currency.name)
               .join(", ")}
           />
