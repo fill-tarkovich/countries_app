@@ -3,6 +3,7 @@ import Layout from "./pages/Layout";
 import Home from "./components/Home";
 import CountriesList from "./components/CountriesList";
 import SingleCountry from "./components/SingleCountry";
+import Favorits from "./components/Favorits";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="countries" element={<CountriesList />} />
+            <Route path="favorits" element={<Favorits />} />
             <Route path="countries/:single" element={<SingleCountry />} />
           </Route>
         </Routes>

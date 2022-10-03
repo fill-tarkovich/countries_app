@@ -8,7 +8,7 @@ const SingleCountry = () => {
   const [weather, setWeather] = useState("");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const KEY = "2fa44403ccb9a8475bc6fccef5a5cf0b";
 
@@ -26,7 +26,7 @@ const SingleCountry = () => {
         setWeather(res.data);
         setLoading(false);
       });
-  }, []);
+  }, [country.capital]);
 
   if (loading) {
     return <p>Loading...</p>;
@@ -48,6 +48,7 @@ const SingleCountry = () => {
           />
         </div>
       )}
+      <button onClick={() => navigate("/countries")}>Back to countries</button>
     </div>
   );
 };
