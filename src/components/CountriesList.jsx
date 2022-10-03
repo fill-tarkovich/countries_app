@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from "react-redux";
 import CountryCard from "./CountryCard";
 
 import { initializeCountries, search } from "../features/countriesSlice";
-import { Link } from "react-router-dom";
-
 const CountriesList = () => {
   const dispatch = useDispatch();
   const countries = useSelector((state) => state.countries.countries);
@@ -29,30 +27,11 @@ const CountriesList = () => {
           />
         </form>
         {countries
-          .filter((c) => {
-            return c.name.official
-              .toLowerCase()
-              .includes(searchInput.toLowerCase());
-          })
+          .filter((c) =>
+            c.name.common.toLowerCase().includes(searchInput.toLowerCase())
+          )
           .map((country) => (
-            <Link
-              to={`/countries/${country.name.common}`}
-              state={{ country: country }}
-            >
-              <CountryCard
-                key={country.name.official}
-                country
-                flag={country.flag}
-                name={country.name.common}
-                official={country.name.official}
-                population={country.population}
-                timezones={country.tymezones}
-                languages={Object.values(country.languages || {}).join(", ")}
-                currencies={Object.values(country.currencies || {})
-                  .map((currency) => currency.name)
-                  .join(", ")}
-              />
-            </Link>
+            <CountryCard key={country.name.common} country={country} />
           ))}
       </div>
     </div>

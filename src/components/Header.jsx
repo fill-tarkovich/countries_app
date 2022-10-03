@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 const Header = () => {
   return (
@@ -16,7 +17,12 @@ const Header = () => {
             <Link to="/countries">Countries</Link>
           </li>
           <li>
-            <Link to="/favorits">Favorits</Link>
+            <Link to="/favorites">
+              Favorites(
+              {useSelector((state) => state.favorites.favoritesList).length ??
+                0}
+              )
+            </Link>
           </li>
         </ul>
       </nav>

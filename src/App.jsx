@@ -1,11 +1,19 @@
+import React, { useEffect } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Layout from "./pages/Layout";
 import Home from "./components/Home";
 import CountriesList from "./components/CountriesList";
 import SingleCountry from "./components/SingleCountry";
-import Favorits from "./components/Favorits";
+import Favorites from "./components/Favorites";
+
+import { initializeFavorites } from "./features/favoritesSlice";
+import { useDispatch } from "react-redux";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(initializeFavorites());
+  }, [dispatch]);
   return (
     <>
       <BrowserRouter>
@@ -13,7 +21,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<Home />} />
             <Route path="countries" element={<CountriesList />} />
-            <Route path="favorits" element={<Favorits />} />
+            <Route path="favorites" element={<Favorites />} />
             <Route path="countries/:single" element={<SingleCountry />} />
           </Route>
         </Routes>

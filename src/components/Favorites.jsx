@@ -9,7 +9,9 @@ const Favorites = () => {
     .filter((c) =>
       c.name.common.toLowerCase().includes(searchInput.toLowerCase())
     )
-    .map((country) => <CountryCard country={country} />);
+    .map((country) => (
+      <CountryCard country={country} key={country.name.official} />
+    ));
 };
 
 export default Favorites;

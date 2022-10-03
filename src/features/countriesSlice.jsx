@@ -4,7 +4,7 @@ import countryService from "../services/countries";
 export const countriesSlice = createSlice({
   name: "countries",
   initialState: {
-    countries: [],
+    countriesList: [],
     isLoading: true,
     search: " ",
   },
