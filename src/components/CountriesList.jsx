@@ -23,6 +23,7 @@ const CountriesList = () => {
         <form className="search">
           <input
             type="text"
+            placeholder="type here..."
             onChange={(e) => dispatch(search(e.target.value))}
           />
         </form>

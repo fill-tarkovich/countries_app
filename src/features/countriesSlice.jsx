@@ -6,7 +6,7 @@ export const countriesSlice = createSlice({
   initialState: {
     countriesList: [],
     isLoading: true,
-    search: " ",
+    search: "",
   },
   reducers: {
     getCountries(state, action) {
