@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CountryCard from "./CountryCard";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Form from "react-bootstrap/Form";
 
 import { initializeCountries, search } from "../features/countriesSlice";
 const CountriesList = () => {
@@ -18,15 +22,22 @@ const CountriesList = () => {
   }
 
   return (
-    <div>
-      <div className="cards_list">
-        <form className="search">
-          <input
-            type="text"
-            placeholder="type here..."
-            onChange={(e) => dispatch(search(e.target.value))}
-          />
-        </form>
+    <Container fluid>
+      <Row>
+        <Col className="mt-5 d-flex justify-content-end position-absolute top-0">
+          <Form>
+            <Form.Control
+              style={{ width: "18rem" }}
+              type="search"
+              className="me-2 "
+              placeholder="Type here..."
+              aria-label="Search"
+              onChange={(e) => dispatch(search(e.target.value))}
+            />
+          </Form>
+        </Col>
+      </Row>
+      <Row xs={2} md={3} lg={4} className=" g-3">
         {countries
           .filter((c) =>
             c.name.common.toLowerCase().includes(searchInput.toLowerCase())
@@ -34,8 +45,8 @@ const CountriesList = () => {
           .map((country) => (
             <CountryCard key={country.name.common} country={country} />
           ))}
-      </div>
-    </div>
+      </Row>
+    </Container>
   );
 };
 

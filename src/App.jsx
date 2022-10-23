@@ -9,6 +9,8 @@ import Favorites from "./components/Favorites";
 import { initializeFavorites } from "./features/favoritesSlice";
 import { useDispatch } from "react-redux";
 
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 function App() {
   const dispatch = useDispatch();
   useEffect(() => {

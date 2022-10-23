@@ -6,33 +6,10 @@
   min-height: 100vh;
 }
 
-.cards_list {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 92%;
-  margin: auto;
-}
-
-.card {
-  background-color: white;
-  width: 30%;
-  height: 300px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-  text-align: center;
-}
-
 a {
   text-decoration: none;
   margin: 0;
   padding: 0;
   width: 30%;
   color: black;
-}
-
-.search {
-  position: absolute;
-  top: 5%;
-  right: 10%;
 }

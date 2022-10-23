@@ -4,7 +4,9 @@ import {
   addToFavorites,
   removeFromFavorites,
 } from "../features/favoritesSlice";
-import { Link } from "react-router-dom";
+import Card from "react-bootstrap/Card";
+import { LinkContainer } from "react-router-bootstrap";
+import { Col, ListGroup, ListGroupItem } from "react-bootstrap";
 
 let approx = require("approximate-number");
 
@@ -32,29 +34,65 @@ const CountryCard = ({ country }) => {
   };
 
   return (
-    <div className="card">
-      <div className="flag">{country.flag}</div>
-      <Link
+    <Col className="mt-5">
+      <LinkContainer
         to={`/countries/${country.name.common}`}
         state={{ from: "countries", country: country, countries: countries }}
       >
-        <h3>{country.name.common}</h3>
-      </Link>
-      <p>{country.name.official}</p>
-      <p>Population: {approx(country.population)}</p>
-      <p>Language(s): {Object.values(country.languages || {}).join(", ")}</p>
-      <p>
-        Currencies:{" "}
-        {Object.values(country.currencies || {})
-          .map((currency) => currency.name)
-          .join(", ")}
-      </p>
-      {checkFavorite() ? (
-        <button onClick={() => removeFavorite(country)}>&#128420;</button>
-      ) : (
-        <button onClick={() => addFavorite(country)}>&#9825;</button>
-      )}
-    </div>
+        <Card className="h-100">
+          <Card.Img
+            variant="top"
+            src={country.flags.svg}
+            className="rounded h-50"
+            style={{
+              objectFit: "cover",
+              minHeight: "200px",
+              maxHeight: "200px",
+            }}
+          />
+          <Card.Body className="d-flex flex-column">
+            <Card.Title>{country.name.common}</Card.Title>
+            <Card.Subtitle className="mb-5 text-muted">
+              {country.name.official}
+            </Card.Subtitle>
+            <ListGroup
+              variant="flush"
+              className="flex-grow-1 justify-content-end"
+            >
+              <ListGroupItem>
+                <i className="bi bi-people me-2"></i>
+                {approx(country.population)}
+              </ListGroupItem>
+              <ListGroupItem>
+                <i className="bi bi-translate me-2"></i>
+                {Object.values(country.languages || {}).join(", ")}
+              </ListGroupItem>
+              <ListGroupItem>
+                <i className="bi bi-cash-coin me-2"></i>
+                {Object.values(country.currencies || {})
+                  .map((currency) => currency.name)
+                  .join(", ")}
+              </ListGroupItem>
+            </ListGroup>
+            {checkFavorite() ? (
+              <button
+                className="btn btn-block btn-primary"
+                onClick={() => removeFavorite(country)}
+              >
+                &#128420;
+              </button>
+            ) : (
+              <button
+                className="btn btn-block btn-primary"
+                onClick={() => addFavorite(country)}
+              >
+                &#9825;
+              </button>
+            )}
+          </Card.Body>
+        </Card>
+      </LinkContainer>
+    </Col>
   );
 };
 

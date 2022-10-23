@@ -1,32 +1,35 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Container, Nav, Navbar, Row } from "react-bootstrap";
+import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
   return (
-    <header>
-      <nav>
-        <div>
-          <Link to="/">Countries App</Link>
-        </div>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/countries">Countries</Link>
-          </li>
-          <li>
-            <Link to="/favorites">
-              Favorites(
-              {useSelector((state) => state.favorites.favoritesList).length ??
-                0}
-              )
-            </Link>
-          </li>
-        </ul>
-      </nav>
-    </header>
+    <Row>
+      <Navbar bg="light" variant="light">
+        <Container className="justify-content-end">
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav>
+              <LinkContainer to="/">
+                <Nav.Link>Home</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/countries">
+                <Nav.Link>Countries</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/favorites">
+                <Nav.Link className="ml-5">
+                  Favorites(
+                  {useSelector((state) => state.favorites.favoritesList)
+                    .length ?? 0}
+                  )
+                </Nav.Link>
+              </LinkContainer>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
+    </Row>
   );
 };
 

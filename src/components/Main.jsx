@@ -1,11 +1,12 @@
 import React from "react";
+import { Row } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 
 const Main = () => {
   return (
-    <div>
+    <Row className="layout">
       <Outlet />
-    </div>
+    </Row>
   );
 };
 
