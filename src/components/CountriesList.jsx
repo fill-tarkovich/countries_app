@@ -24,7 +24,7 @@ const CountriesList = () => {
   return (
     <Container fluid>
       <Row>
-        <Col className="mt-5 d-flex justify-content-end position-absolute top-0">
+        <Col className="mt-5 d-flex justify-content-center">
           <Form>
             <Form.Control
               style={{ width: "18rem" }}

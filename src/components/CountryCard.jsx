@@ -35,11 +35,11 @@ const CountryCard = ({ country }) => {
 
   return (
     <Col className="mt-5">
-      <LinkContainer
+        <Card className="h-100">
+        <LinkContainer
         to={`/countries/${country.name.common}`}
         state={{ from: "countries", country: country, countries: countries }}
       >
-        <Card className="h-100">
           <Card.Img
             variant="top"
             src={country.flags.svg}
@@ -50,6 +50,7 @@ const CountryCard = ({ country }) => {
               maxHeight: "200px",
             }}
           />
+                </LinkContainer>
           <Card.Body className="d-flex flex-column">
             <Card.Title>{country.name.common}</Card.Title>
             <Card.Subtitle className="mb-5 text-muted">
@@ -91,7 +92,6 @@ const CountryCard = ({ country }) => {
             )}
           </Card.Body>
         </Card>
-      </LinkContainer>
     </Col>
   );
 };

@@ -6,10 +6,15 @@
   min-height: 100vh;
 }
 
-a {
-  text-decoration: none;
-  margin: 0;
-  padding: 0;
-  width: 30%;
-  color: black;
+// a {
+//   text-decoration: none;
+//   margin: 0;
+//   padding: 0;
+//   width: 30%;
+//   color: black;
+//   cursor: pointer;
+// }
+
+.card-img-top {
+  cursor: pointer;
 }

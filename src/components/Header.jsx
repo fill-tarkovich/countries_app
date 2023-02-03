@@ -4,25 +4,26 @@ import { Container, Nav, Navbar, Row } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
 const Header = () => {
+
+const favorites = useSelector((state) => state.favorites.favoritesList);
+
   return (
     <Row>
-      <Navbar bg="light" variant="light">
+      <Navbar bg="light" variant="light" fixed="top">
         <Container className="justify-content-end">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav>
               <LinkContainer to="/">
-                <Nav.Link>Home</Nav.Link>
+                <Nav.Link className="me-2">Home</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/countries">
-                <Nav.Link>Countries</Nav.Link>
+                <Nav.Link className="me-2">Countries</Nav.Link>
               </LinkContainer>
               <LinkContainer to="/favorites">
-                <Nav.Link className="ml-5">
-                  Favorites(
-                  {useSelector((state) => state.favorites.favoritesList)
-                    .length ?? 0}
-                  )
+                <Nav.Link className="me-2">
+                  Favorites
+                    {favorites.length > 0 ? `(${favorites.length})` : ""}
                 </Nav.Link>
               </LinkContainer>
             </Nav>
