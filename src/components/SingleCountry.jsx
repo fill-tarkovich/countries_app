@@ -11,12 +11,10 @@ const SingleCountry = () => {
   const [error, setError] = useState(false);
   const navigate = useNavigate();
 
-  const KEY = "2fa44403ccb9a8475bc6fccef5a5cf0b";
-
   useEffect(() => {
     axios
       .get(
-        `https://api.openweathermap.org/data/2.5/weather?q=${country.capital}&units=metric&appid=${KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?q=${country.capital}&units=metric&appid=${process.env.REACT_APP_OPENWEATHER_KEY}`
       )
       .catch((error) => {
         console.log(error);
