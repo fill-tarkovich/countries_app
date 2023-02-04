@@ -7,6 +7,7 @@ import {
 import Card from "react-bootstrap/Card";
 import { LinkContainer } from "react-router-bootstrap";
 import { Col, ListGroup, ListGroupItem } from "react-bootstrap";
+import { HeartFillIcon, HeartIcon } from "@primer/octicons-react";
 
 let approx = require("approximate-number");
 
@@ -36,23 +37,26 @@ const CountryCard = ({ country }) => {
   return (
     <Col className="mt-5">
         <Card className="h-100">
-        <LinkContainer
+           <Card.Img
+        variant="top"
+        src={country.flags.svg}
+        className="rounded-top h-50"
+        style={{
+          objectFit: "cover",
+          minHeight: "200px",
+          maxHeight: "200px",
+          borderBottom: "1px solid rgba(0, 0, 0, 0.175)",
+        }}
+      />
+          <Card.Body className="d-flex flex-column">
+          <LinkContainer
         to={`/countries/${country.name.common}`}
         state={{ from: "countries", country: country, countries: countries }}
+        style={{cursor: "pointer", textDecoration: "underline"}}
       >
-          <Card.Img
-            variant="top"
-            src={country.flags.svg}
-            className="rounded h-50"
-            style={{
-              objectFit: "cover",
-              minHeight: "200px",
-              maxHeight: "200px",
-            }}
-          />
-                </LinkContainer>
-          <Card.Body className="d-flex flex-column">
             <Card.Title>{country.name.common}</Card.Title>
+            </LinkContainer>
+
             <Card.Subtitle className="mb-5 text-muted">
               {country.name.official}
             </Card.Subtitle>
@@ -77,17 +81,17 @@ const CountryCard = ({ country }) => {
             </ListGroup>
             {checkFavorite() ? (
               <button
-                className="btn btn-block btn-primary"
+                className="btn btn-light"
                 onClick={() => removeFavorite(country)}
               >
-                &#128420;
+                <HeartFillIcon></HeartFillIcon>
               </button>
             ) : (
               <button
-                className="btn btn-block btn-primary"
+                className="btn btn-light"
                 onClick={() => addFavorite(country)}
               >
-                &#9825;
+                <HeartIcon></HeartIcon>
               </button>
             )}
           </Card.Body>

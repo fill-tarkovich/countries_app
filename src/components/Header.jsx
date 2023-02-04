@@ -9,7 +9,7 @@ const favorites = useSelector((state) => state.favorites.favoritesList);
 
   return (
     <Row>
-      <Navbar bg="light" variant="light" fixed="top">
+      <Navbar bg="dark" variant="dark" fixed="top">
         <Container className="justify-content-end">
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Navbar.Collapse id="basic-navbar-nav">
